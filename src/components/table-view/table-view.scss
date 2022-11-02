@@ -61,6 +61,12 @@ tr:nth-child(4n+3) {
    background-color: #f3f2f7;
    color: #455a64;
 }
+td:nth-child(1) {
+    display: none;
+}
+th:nth-child(1) {
+    display: none;
+}
 
 .clienthover {
    position: relative;
@@ -282,4 +288,26 @@ tr:nth-child(4n+3) {
 
 .active {
    display: block;
+}
+
+
+
+@media (max-width: 1400px) {
+    .dop-window .dop_total{
+        left: 670px;
+    }
+
+    .dop-window .dop_status{
+        left: 150px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .dop-window .dop_total{
+        left: 570px;
+    }
+
+    .dop-window .dop_status{
+        left: 100px;
+    }
 }

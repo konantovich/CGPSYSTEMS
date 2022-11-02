@@ -4,14 +4,17 @@ import { useSelector } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import generateData from './generate-data';
-import { fetchClients, removeClient, closeAllRow } from '../../redux/slices/clients';
+import {
+   fetchClients,
+   removeClient,
+   closeAllRow
+} from '../../redux/slices/clients';
 
 import './table-view.scss';
 
 import { OpenTableViewCell } from '../open-table-view/open-table-view';
 
 import sixdots from './6dots.png';
-
 
 // const columns = [
 //    'Client',
@@ -21,8 +24,6 @@ import sixdots from './6dots.png';
 //    'Status',
 //    ''
 // ];
-
-
 
 export const TableView = ({ searchValue }) => {
    const dispatch = useDispatch();
@@ -35,22 +36,16 @@ export const TableView = ({ searchValue }) => {
    }, []);
 
    const filteredData = clients.filter((el) => {
-      //if no input the return the original
       if (searchValue === '') {
          return el;
-      }
-      //return the item which contains the user input
-      else {
+      } else {
          return el.client.toLowerCase().includes(searchValue.toLowerCase());
       }
    });
 
    const findClient = (id) => {
-    return clients.find(o => o.id === id)
-  }
-
-   // const [columns, setColumns] = React.useState()
-   // const [rows, setRows] = React.useState()
+      return clients.find((o) => o.id === id);
+   };
    React.useEffect(() => {
       if (clients) {
          setClientsLoaded(true);
@@ -89,11 +84,7 @@ export const TableView = ({ searchValue }) => {
       setCols(tempCols);
       setDragOver('');
 
-      dispatch(closeAllRow())
-      // if(draggedColIdx <= cols.length) {
-      //   console.log('dragOver',draggedColIdx)
-      // }
-    
+      dispatch(closeAllRow());
    };
 
    return (
@@ -115,9 +106,8 @@ export const TableView = ({ searchValue }) => {
                            dragOver={col === dragOver}
                            className='clienthover'
                         >
-                           <span
-                           >  
-                              <img src={sixdots} alt=''  />
+                           <span>
+                              <img src={sixdots} alt='' />
                            </span>
                            {col}
                         </th>
@@ -133,78 +123,69 @@ export const TableView = ({ searchValue }) => {
                               <>
                                  <td key={v} dragOver={cols[idx] === dragOver}>
                                     {row[cols[idx]]}
-                             
                                  </td>
                               </>
                            ))}
                         </tr>
 
-                        <div >
+                        <div>
                            {findClient(row.Id) &&
                               findClient(row.Id).open === true && (
-                                <><div className='dop_cell'></div>
-                                 <div className='dop-window'>
-                                    <div className='dop_client'>
-                                       <p>Client</p>
-                                       <h2>{row.Client}</h2>
-                                    </div>
+                                 <>
+                                    <div className='dop_cell'></div>
+                                    <div className='dop-window'>
+                                       <div className='dop_client'>
+                                          <p>Client</p>
+                                          <h2>{row.Client}</h2>
+                                       </div>
 
-                                    <div className='dop_contact'>
-                                       <p>Main Contact</p>
-                                       <h2> {findClient(row.Id).mainContact}</h2>
-                                    </div>
+                                       <div className='dop_contact'>
+                                          <p>Main Contact</p>
+                                          <h2>
+                                             {' '}
+                                             {findClient(row.Id).mainContact}
+                                          </h2>
+                                       </div>
 
-                                    <div className='dop_notes'>
-                                       <p>Notes</p>
-                                       <h5> {findClient(row.Id).notes || ''}</h5>
-                                    </div>
+                                       <div className='dop_notes'>
+                                          <p>Notes</p>
+                                          <h5>
+                                             {' '}
+                                             {findClient(row.Id).notes || ''}
+                                          </h5>
+                                       </div>
 
-                                    <div className='dop_total'>
-                                       <p>Total Earnings</p>
-                                   <div className='cost_number'>
-                                    <h1>${findClient(row.Id).totalEarnings}</h1>
-                                    <h5>.00</h5>
-                                    </div>
+                                       <div className='dop_total'>
+                                          <p>Total Earnings</p>
+                                          <div className='cost_number'>
+                                             <h1>
+                                                $
+                                                {
+                                                   findClient(row.Id)
+                                                      .totalEarnings
+                                                }
+                                             </h1>
+                                             <h5>.00</h5>
+                                          </div>
 
-                                    <div className='dop_status'>{findClient(row.Id).status ? <div className='status_active'><p>Active</p></div> : <div className='status_archived'><p>Archived</p></div>}</div>
+                                          <div className='dop_status'>
+                                             {findClient(row.Id).status ? (
+                                                <div className='status_active'>
+                                                   <p>Active</p>
+                                                </div>
+                                             ) : (
+                                                <div className='status_archived'>
+                                                   <p>Archived</p>
+                                                </div>
+                                             )}
+                                          </div>
+                                       </div>
                                     </div>
-                                 </div>
                                  </>
                               )}
                         </div>
                      </>
                   ))}
-
-               {/* <td>{item.client}</td>
-                     <td>{item.since}</td>
-                     <td>${item.totalEarnings}</td>
-                     <td>${item.availableCredit}</td>
-                     <td>
-                        {item.status ? <div>active</div> : <div>archived</div>}
-                     </td>
-                     <td>
-                        <div className='open_3dots'>
-                           <p
-                              onClick={
-                                 () => setOpenText(!openText)
-                                 // setOpenText([
-                                 //    ...openText.slice(0, index),
-                                 //    {
-                                 //       title: item.title,
-                                 //       text: item.text,
-                                 //       open: !item.open
-                                 //    },
-                                 //    ...openText.slice(index + 1)
-                                 // ])
-                              }
-                           >
-                              Open
-                           </p>{' '}
-                           <p onClick={() => dispatch(removeClient(item.id))}>
-                              3 dots
-                           </p>
-                        </div>
-                     </td> */}
             </tbody>
          </table>
       </div>

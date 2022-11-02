@@ -40,6 +40,7 @@ const clientsSlice = createSlice({
          state.clients.items.map((element, index) => {
             return (element.open = false);
          });
+         console.log('adsdasdad',action.payload);
 
          state.clients.items.find((o) => o.id === action.payload.id).open =
             !action.payload.open;
