@@ -128,7 +128,7 @@ export const TableView = ({ searchValue }) => {
                            ))}
                         </tr>
 
-                        <div>
+                        <div className='bottom_open'>
                            {findClient(row.Id) &&
                               findClient(row.Id).open === true && (
                                  <>
