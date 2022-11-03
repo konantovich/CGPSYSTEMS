@@ -1,29 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import styled from 'styled-components';
 import generateData from './generate-data';
-import {
-   fetchClients,
-   removeClient,
-   closeAllRow
-} from '../../redux/slices/clients';
+import { fetchClients, closeAllRow } from '../../redux/slices/clients';
 
 import './table-view.scss';
 
-import { OpenTableViewCell } from '../open-table-view/open-table-view';
-
 import sixdots from './6dots.png';
-
-// const columns = [
-//    'Client',
-//    'Since',
-//    'total Earnings',
-//    'Available Credit',
-//    'Status',
-//    ''
-// ];
 
 export const TableView = ({ searchValue }) => {
    const dispatch = useDispatch();

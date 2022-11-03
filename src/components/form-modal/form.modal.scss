@@ -36,7 +36,6 @@
    }
 
    & h2 {
-
       font-weight: 500;
       font-size: 18px;
       line-height: 21px;
@@ -51,17 +50,16 @@
    outline: none;
 }
 form {
-    width: 100%;
+   width: 100%;
 }
 .first_input {
    background: #ffffff;
-//    width: 90%;
+   //    width: 90%;
    display: block;
    margin: auto;
    & input {
       width: 100%;
-    //   margin: 0 -21px 0 0;
-
+      //   margin: 0 -21px 0 0;
    }
    & input::-webkit-input-placeholder {
       padding-left: 10px;
@@ -84,9 +82,8 @@ form {
    flex-direction: row;
    width: 100%;
    justify-content: center;
-    gap: 11px;
+   gap: 11px;
    & .second_input {
-    
       width: 100%;
 
       & input {
@@ -103,161 +100,136 @@ form {
    margin-top: 10px;
 }
 
+.client_since {
+   position: relative;
+   display: flex;
+   flex-direction: row;
 
+   & span {
+      bottom: 10px;
+      left: 12px;
+      width: 36px;
 
-
-.client_since{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-
-    & span {
-
-        bottom: 10px;
-        left: 12px;
-        width: 36px;
-
-        margin: 0;
-
-    }
-    & input{
-        border: 1px solid #D6D8DE;
-border-radius: 4px 0px 0px 4px;
-    }
+      margin: 0;
+   }
+   & input {
+      border: 1px solid #d6d8de;
+      border-radius: 4px 0px 0px 4px;
+   }
 }
 
-
-
-
-.date_icon_input{
-    display: flex;
-    flex-direction: row;   
-    width: 40px;   
+.date_icon_input {
+   display: flex;
+   flex-direction: row;
+   width: 40px;
 }
-.date_input{
-    position: relative;
-    display: flex;
-    flex-direction: column;  
-    & input {
-        width: 41%;
+.date_input {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   & input {
+      width: 41%;
+   }
+   & input::-webkit-input-placeholder {
+      padding-left: 10px;
+   }
 
-    }
-    & input::-webkit-input-placeholder {
-        padding-left: 10px;
-     }
-
-    & .input_label{
-       
-        & p {
-            font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
-        color: #455a64;
-        }
-    }
-    & input[type=text] {
-
-        padding-left: 45px;
-
-
+   & .input_label {
+      & p {
+         font-weight: 500;
+         font-size: 12px;
+         line-height: 14px;
+         color: #455a64;
       }
-
-    
+   }
+   & input[type='text'] {
+      padding-left: 45px;
+   }
 }
-.date_icon{
-    position: absolute;
-    top:33px;
-    left: 0px;
-    width: 40px;
-        height: 40px;
-   
-    border-right: 1px solid #d6d8de;
-    border-radius: 0;
-    & img {
-        margin-left: 12px;
-        margin-top: 10px;
+.date_icon {
+   position: absolute;
+   top: 33px;
+   left: 0px;
+   width: 40px;
+   height: 40px;
 
-    
-    }
+   border-right: 1px solid #d6d8de;
+   border-radius: 0;
+   & img {
+      margin-left: 12px;
+      margin-top: 10px;
+   }
 }
-
 
 .main_contact_container {
-    width: 100%;
-    border: 1px solid #efefef;
-    border-radius: 8px;
-    margin: 11px 0;
- 
-    & .main_contact_label {
-       margin: 17px 17px;
-    }
+   width: 100%;
+   border: 1px solid #efefef;
+   border-radius: 8px;
+   margin: 11px 0;
 
-    .main_contact_inputs{
-        width: auto;
+   & .main_contact_label {
+      margin: 17px 17px;
+   }
 
-        margin: 17px 17px ;
-        gap: 14px;
-        & input {
- 
-            width: 100%;
-        }
-    }
-  
- }
+   .main_contact_inputs {
+      width: auto;
 
+      margin: 17px 17px;
+      gap: 14px;
+      & input {
+         width: 100%;
+      }
+   }
+}
 
+.bottom_label_container {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   width: 100%;
+   margin-bottom: 10px;
+   margin-top: 30px;
 
+   & p {
+      font-size: 14px;
+      line-height: 16px;
+      text-align: center;
+      color: #607d8b;
+      margin: 24px 0 0 23px;
+   }
 
- .bottom_label_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
-    margin-top: 30px;
- 
-    & p {
-       font-size: 14px;
-       line-height: 16px;
-       text-align: center;
-       color: #607d8b;
-       margin: 24px 0 0 23px;
-    }
- 
-    & button {
-     position: relative;
-       align-items: center;
-    //    margin-right: 40px;
-     
-    //    padding: 10px 22px;
-       gap: 10px;
- 
-       width: 75px;
-       height: 36px;
- 
-       /* Primary */
- 
-       background: #007aff;
-       border-radius: 5px;
-       border: none;
-       cursor: pointer;
-       & p {
+   & button {
+      position: relative;
+      align-items: center;
+      //    margin-right: 40px;
+
+      //    padding: 10px 22px;
+      gap: 10px;
+
+      width: 75px;
+      height: 36px;
+
+      /* Primary */
+
+      background: #007aff;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      & p {
          position: absolute;
          top: -14px;
          left: -2px;
-          font-size: 14px;
-          line-height: 16px;
- 
-          color: #ffffff;
-       }
- 
+         font-size: 14px;
+         line-height: 16px;
 
-    }
- }
- .cancel_button{
-    margin-top: 10px;
-    cursor: pointer;
-    & p {
-     margin: auto;
-    }
-    }
+         color: #ffffff;
+      }
+   }
+}
+.cancel_button {
+   margin-top: 10px;
+   cursor: pointer;
+   & p {
+      margin: auto;
+   }
+}

@@ -9,7 +9,6 @@ export const fetchClients = createAsyncThunk(
    'clients/fetchClients',
    async () => {
       const data = await clientsApi;
-      console.log(data);
       return data;
    }
 );
@@ -31,7 +30,6 @@ const clientsSlice = createSlice({
          state.clients.items.push(action.payload);
       },
       removeClient: (state, action) => {
-         console.log(action.payload);
          state.clients.items = state.clients.items.filter(
             (item) => item.id !== action.payload
          );
@@ -40,8 +38,6 @@ const clientsSlice = createSlice({
          state.clients.items.map((element, index) => {
             return (element.open = false);
          });
-         console.log('adsdasdad',action.payload);
-
          state.clients.items.find((o) => o.id === action.payload.id).open =
             !action.payload.open;
       },
@@ -53,19 +49,11 @@ const clientsSlice = createSlice({
       },
 
       addToArchive: (state, action) => {
-         console.log(action.payload.status);
          state.clients.items.find((o) => o.id === action.payload.id).status =
             !action.payload.status;
       },
 
       priceCount: (state) => {
-         console.log(
-            'priceCount',
-            state.clients.items.reduce(
-               (price, item) => price + item.totalEarnings,
-               0
-            )
-         );
          state.totalEarningsCount = state.clients.items.reduce(
             (price, item) => price + item.totalEarnings,
             0

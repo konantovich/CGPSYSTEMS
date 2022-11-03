@@ -1,5 +1,4 @@
-.container {
-}
+
 .container_mainpage {
    max-width: 1148px;
    background: #ffffff;
@@ -26,13 +25,12 @@
       width: 36px;
 
       margin: auto;
-    //   border: 1px solid #d6d8de;
-    //   border-radius: 4px 0px 0px 4px;
+      //   border: 1px solid #d6d8de;
+      //   border-radius: 4px 0px 0px 4px;
    }
    & img {
       display: block;
       margin: auto;
-      
    }
    & input {
       width: 100%;
@@ -41,7 +39,7 @@
       border: 1px solid #d6d8de;
    }
    & input::-webkit-input-placeholder {
-    padding-left: 10px;
+      padding-left: 10px;
    }
 }
 
@@ -50,9 +48,7 @@
    flex-direction: row;
    width: 100%;
    justify-content: space-between;
-
 }
-
 
 .add_new_client_button {
    position: relative;
@@ -71,7 +67,7 @@
       font-size: 14px;
       line-height: 16px;
 
-        margin: 5px 0 0 15px;
+      margin: 5px 0 0 15px;
       color: #ffffff;
    }
 
@@ -82,14 +78,10 @@
    }
 }
 
-
-.total_clients{
-    font-weight: 500;
-font-size: 14px;
-line-height: 16px;
-    color: #455A64;
-    margin: 0 0 13px 19px;
+.total_clients {
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 16px;
+   color: #455a64;
+   margin: 0 0 13px 19px;
 }
-
-
-

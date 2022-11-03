@@ -10,50 +10,42 @@ import escape from './escape.png';
 import calendar from './calendar.png';
 
 export const FormModal = ({ modal, setModal }) => {
+   const [formValue, setFormValue] = React.useState({});
 
-    const [formValue, setFormValue] = React.useState({});
+   const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+   const formRef = React.useRef();
 
-     const formRef = React.useRef();
+   const clients = useSelector((state) => state.clients.clients.items);
 
-     const clients = useSelector((state) => state.clients.clients.items);
+   const handleFormSubmit = async (e) => {
+      e.preventDefault();
 
-     const handleFormSubmit = async (e) => {
-        e.preventDefault();
-  
-        console.log(e.target[1]);
-        //console.log(e.nativeEvent.path)
-  
-        //inputs value
-        const data = {
+      //inputs value
+      const data = {
+         id: clients.length + 1,
+         client: e.target[0].value,
+         since: e.target[4].value,
+         totalEarnings: e.target[1].value,
+         availableCredit: e.target[2].value,
+         status: true,
+         open: false,
+         openMiniModal: false,
+         notes: e.target[3].value,
+         mainContact: e.target[5].value + ' ' + e.target[6].value
+      };
 
-            id: clients.length + 1,
-            client: e.target[0].value,
-            since: e.target[4].value,
-            totalEarnings: e.target[1].value,
-            availableCredit: e.target[2].value,
-            status: true,
-            open: false,
-            openMiniModal: false,
-            notes: e.target[3].value,
-            mainContact: e.target[5].value + ' ' + e.target[6].value,
+      dispatch(addClient(data));
 
-        };
-
-        dispatch(addClient(data))
-  
-        setFormValue({
-           ...data
-        });
-        setModal(!modal)
-
-    }
-
+      setFormValue({
+         ...data
+      });
+      setModal(!modal);
+   };
 
    return (
       <div>
-        {console.log(formValue)}
+         {console.log(formValue)}
          {modal && (
             <div className='modal-container'>
                <div className='form-container'>
@@ -79,12 +71,18 @@ export const FormModal = ({ modal, setModal }) => {
                      <div className='second_inputs'>
                         <div className='input_label second_input'>
                            <p>Total Earnings</p>
-                           <input className='input second_input' type='number'/>
+                           <input
+                              className='input second_input'
+                              type='number'
+                           />
                         </div>
 
                         <div className='input_label second_input'>
                            <p>Available Credit</p>
-                           <input className='input second_input'  type='number'/>
+                           <input
+                              className='input second_input'
+                              type='number'
+                           />
                         </div>
                      </div>
 
@@ -100,9 +98,16 @@ export const FormModal = ({ modal, setModal }) => {
                            <p>Client Since</p>
                         </div>
                         <div className='date_icon'>
-                          <span> <img className='' src={calendar} alt='date-logo' /></span>
+                           <span>
+                              {' '}
+                              <img
+                                 className=''
+                                 src={calendar}
+                                 alt='date-logo'
+                              />
+                           </span>
                         </div>
-                     
+
                         <input
                            placeholder=' '
                            id='input-date'
@@ -110,25 +115,7 @@ export const FormModal = ({ modal, setModal }) => {
                            type='text'
                            required
                         ></input>
-                       
                      </div>
-                     {/* <div className='second_inputs'>
-                        <div className='input_label second_input date_input'>
-                           <div>
-                              <div className='input_label'>
-                                 <p>Client Since</p>
-                              </div>
-                              <div className='date_icon_input'>
-                                 <div className='date_icon'>
-                                    <span>
-                                       <img src={calendar} alt='' />
-                                    </span>
-                                 </div>
-                                 <input className='input second_input' />
-                              </div>
-                           </div>
-                        </div>
-                     </div> */}
 
                      <div className='main_contact_container'>
                         <div className='main_contact_label'>Main Contact</div>

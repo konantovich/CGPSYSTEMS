@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import { priceCount, filterClients } from '../../redux/slices/clients';
+import { priceCount } from '../../redux/slices/clients';
 import { TableView } from '../../components/table-view/table-view';
 import { FormModal } from '../../components/form-modal/form-modal';
 
@@ -14,9 +14,9 @@ import './mainpage.scss';
 export const Home = () => {
    const clients = useSelector((state) => state.clients.clients.items);
 
-    const [searchValue, setSearchValue] = React.useState('');
+   const [searchValue, setSearchValue] = React.useState('');
 
-       const [modal, setModal] = React.useState(false);
+   const [modal, setModal] = React.useState(false);
 
    const dispatch = useDispatch();
 
@@ -25,24 +25,23 @@ export const Home = () => {
    }, [clients]);
 
    const handleOpenModal = () => {
-
-    setModal(true)
-
-   }
-
-   
+      setModal(true);
+   };
 
    return (
       <div className='container' id='container'>
-          {modal && <FormModal modal={modal} setModal={setModal}></FormModal>}
+         {modal && <FormModal modal={modal} setModal={setModal}></FormModal>}
          <div className='container_mainpage'>
-       
             <div className='top_part'>
                <div className='search_input_container'>
                   <span>
                      <img src={search} alt='search' />
                   </span>
-                  <input placeholder='Search' type='text' onChange={(e) => setSearchValue(e.target.value)} />
+                  <input
+                     placeholder='Search'
+                     type='text'
+                     onChange={(e) => setSearchValue(e.target.value)}
+                  />
                </div>
                <div className='add_new_client_button' onClick={handleOpenModal}>
                   <span>
@@ -55,7 +54,6 @@ export const Home = () => {
             </div>
             <div className='total_clients'>Total Clients: {clients.length}</div>
             <TableView searchValue={searchValue} />
-          
          </div>
       </div>
    );

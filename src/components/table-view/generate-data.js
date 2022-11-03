@@ -1,22 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import {
    removeClient,
-   changeStatus,
    openRow,
-   addToArchive,
-   openMiniModal
+   addToArchive
 } from '../../redux/slices/clients';
-// import { name, internet, date } from "faker";
-// const columns = [
-//   'Client',
-//   'Since',
-//   'total Earnings',
-//   'Available Credit',
-//   'Status',
-//   ''
-// ];
 
 import arrow from './arrow.png';
 import threedots from './3dots.png';
@@ -31,15 +20,7 @@ const ModalButtons = ({ children, row, open, status }) => {
    const [openDeleteArchive, setOpenDeleteArchive] = React.useState(false);
    const [hoverModal, setHoverModal] = React.useState(false);
 
-   const clients = useSelector((state) => state.clients.clients.items);
-
-   const findedClient = () => {
-      console.log(
-         'clients.filter(o => o.id === row).open',
-         clients.filter((o) => o.id === row)
-      );
-      return clients.filter((o) => o.id === row);
-   };
+   const [openDetails, setOpenDetails] = React.useState(false);
 
    return (
       <>
@@ -53,10 +34,11 @@ const ModalButtons = ({ children, row, open, status }) => {
                onClick={() => setOpenDeleteArchive(false)}
             ></div>
             <p
-               className={
-                  !findedClient().open ? 'open_row' : 'open_row close_row'
-               }
-               onClick={() => dispatch(openRow({ open: open, id: row }))}
+               className={!openDetails ? 'open_row' : 'open_row close_row'}
+               onClick={() => {
+                  dispatch(openRow({ open: open, id: row }));
+                  setOpenDetails(!openDetails);
+               }}
             >
                <img src={arrow} alt='' />
             </p>
@@ -123,7 +105,9 @@ const generateData = (clients) => {
                row={clientsInfo.id}
                open={clientsInfo.open}
                status={clientsInfo.status}
-            ></ModalButtons>
+            >
+               {' '}
+            </ModalButtons>
          )
       });
    }
