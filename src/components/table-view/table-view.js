@@ -73,7 +73,6 @@ export const TableView = ({ searchValue }) => {
    return (
       <div className='App'>
          <table>
-            {console.log('clients', clients)}
             <thead>
                <tr>
                   {cols &&
@@ -89,10 +88,12 @@ export const TableView = ({ searchValue }) => {
                            dragOver={col === dragOver}
                            className='clienthover'
                         >
-                           <span>
-                              <img src={sixdots} alt='' />
-                           </span>
                            {col}
+                           <p>
+                              {
+                                 // <img src={sixdots} alt='' />
+                              }
+                           </p>
                         </th>
                      ))}
                </tr>

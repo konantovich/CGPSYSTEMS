@@ -17,9 +17,10 @@ tr,
 th {
    background-color: #ffffff;
    /* Border Bottom */
-   padding: 8px;
+   padding: 8px 0 8px 18px;
    box-shadow: inset 0px -1px 0px #e4e5e7;
    font-size: 12px;
+
 }
 th {
    background-color: #f3f2f7;
@@ -68,26 +69,40 @@ th:nth-child(1) {
 .clienthover {
    position: relative;
 
+
    gap: 5px;
-   & span {
-      margin-right: 10px;
-   }
-   & img {
+   & p {
+
+      margin-left: -12px;
+      margin-top: -15px;
+      width: 10px;
+      height: 20px;
+
+      background-image: url(6dots.png) ;
+      background-repeat: no-repeat;
       display: none;
+   }
+   & p:hover {
+      display: block;
    }
 }
 
 .clienthover:hover {
-   position: relative;
-   & span {
-      margin-right: 10px;
-   }
-   & img {
-      position: absolute;
-      display: block;
-      margin-top: 0px;
-      margin-left: -5px;
-   }
+    
+    & p {
+        
+        display: block;
+     }
+//    position: relative;
+//    & span {
+//       margin-right: 10px;
+//    }
+//    & img {
+//       position: absolute;
+//       display: block;
+//       margin-top: 0px;
+//       margin-left: -5px;
+//    }
 }
 
 .open_cell {
