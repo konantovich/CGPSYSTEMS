@@ -65,7 +65,7 @@ const ModalButtons = ({ children, row, open, status }) => {
                            setOpenDeleteArchive(false);
                         }}
                      >
-                        <img src={archive} alt='' /> <p>Archive</p>
+                        <img src={archive} alt='' /> <p>{status? 'Archive' : 'Active'}</p>
                      </p>
                   </div>
                )}
