@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { priceCount } from '../../redux/slices/clients';
 import { TableView } from '../../components/table-view/table-view';
 import { FormModal } from '../../components/form-modal/form-modal';
+import { MainNav } from '../../components/main-nav/main-nav';
 
 import search from './search.png';
 import add from './add.png';
@@ -31,30 +32,12 @@ export const Home = () => {
    return (
       <div className='container' id='container'>
          {modal && <FormModal modal={modal} setModal={setModal}></FormModal>}
-         <div className='container_mainpage'>
-            <div className='top_part'>
-               <div className='search_input_container'>
-                  <span>
-                     <img src={search} alt='search' />
-                  </span>
-                  <input
-                     placeholder='Search'
-                     type='text'
-                     onChange={(e) => setSearchValue(e.target.value)}
-                  />
-               </div>
-               <div className='add_new_client_button' onClick={handleOpenModal}>
-                  <span>
-                     <img src={add} alt='add' />
-                  </span>
-                  <div>
-                     <p>New Client</p>
-                  </div>
-               </div>
-            </div>
-            <div className='total_clients'>Total Clients: {clients.length}</div>
+         <MainNav setSearchValue={setSearchValue} clients={clients} />
+       
+         
+         
             <TableView searchValue={searchValue} />
-         </div>
+         
       </div>
    );
 };

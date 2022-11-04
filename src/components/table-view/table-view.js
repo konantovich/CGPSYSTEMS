@@ -71,6 +71,7 @@ export const TableView = ({ searchValue }) => {
    };
 
    return (
+    <div className='container_mainpage'>
       <div className='App'>
          <table>
             <thead>
@@ -172,6 +173,7 @@ export const TableView = ({ searchValue }) => {
                   ))}
             </tbody>
          </table>
+      </div>
       </div>
    );
 };
