@@ -1,30 +1,36 @@
 table {
    border-spacing: 0;
    width: 100%;
+   background: #FFFFFF;
 }
-#main_table {
-   border-collapse: collapse;
-   width: 100%;
-}
+
 
 thead {
    text-align: left;
    align-items: left;
    justify-content: left;
    margin-left: -10px;
+   
+
+}
+
+tbody{
+    background-color: #f3f2f7;
 }
 tr,
 th {
    background-color: #ffffff;
+
    /* Border Bottom */
-   padding: 8px 0 8px 18px;
+   padding: 0 0 0 18px;
    box-shadow: inset 0px -1px 0px #e4e5e7;
    font-size: 12px;
-
 }
+
+
 th {
    background-color: #f3f2f7;
-   height: 56px;
+   height: 40px;
    font-weight: 700;
    font-size: 12px;
    line-height: 14px;
@@ -36,9 +42,10 @@ th {
 
 td {
    position: relative;
-   padding: 8px 8px 8px 15px;
+
+   padding: 0 8px 0 15px;
    font-weight: 400;
-   font-size: 14px;
+   font-size: 12px;
    line-height: 16px;
 
    color: #6e6b7b;
@@ -47,16 +54,16 @@ td {
 tr:nth-child(4n + 3) {
    background: #fcfcfd;
 }
-
+.rows{
+z-index: 6666;
+}
 .rows:hover {
    background-color: #66afff;
 }
 
-#main_table th {
-   padding-top: 12px;
-   padding-bottom: 12px;
+th {
    text-align: left;
-   background-color: #f3f2f7;
+
    color: #455a64;
 }
 td:nth-child(1) {
@@ -69,40 +76,90 @@ th:nth-child(1) {
 .clienthover {
    position: relative;
 
-
    gap: 5px;
-   & p {
 
-      margin-left: -12px;
-      margin-top: -15px;
-      width: 10px;
-      height: 20px;
+   background-repeat: no-repeat;
+   background-position: 0%;
 
-      background-image: url(6dots.png) ;
-      background-repeat: no-repeat;
+   & .six-dots {
       display: none;
+      position: absolute;
+   }
+   & .arrow-col {
+      margin-left: 10px;
+      margin-bottom: 1.5px;
    }
    & p:hover {
       display: block;
    }
 }
 
+.clienthover:hover::before{
+   content: '';
+   width: 15px;
+   height: 100%;
+   top: 0;
+   left: -15px;
+   display: block;
+   position: absolute;
+   background-color: #f3f2f7;
+
+}
+
 .clienthover:hover {
-    
-    & p {
+
+   height: 100%;
+   position: relative;
+   cursor: grab;
+   background-image: url(../../images/sixdots.svg);
+   background-repeat: no-repeat;
+
+   right: -15px;
+
+ 
+
+   & p {
+      position: relative;
+      right: -15px;
+      display: block;
+      
+
+   }
+
+   & .six-dots {
+      
+      position: absolute;
+      display: block;
+      margin-left: -15px;
+   }
+}
+
+.clienthover:nth-last-child(-n+1) {
+    background-image: none;
+    right: 0;
+    cursor: default;
+    & svg {
+        display: none;
         
-        display: block;
-     }
-//    position: relative;
-//    & span {
-//       margin-right: 10px;
-//    }
-//    & img {
-//       position: absolute;
-//       display: block;
-//       margin-top: 0px;
-//       margin-left: -5px;
-//    }
+    }
+}
+
+
+.bottom_open {
+
+   & .dop-window {
+      position: relative;
+      top: 200px;
+      left: -200px;
+      height: 173px;
+      // width:1148px;
+
+      background: #e5e5e5;
+   }
+}
+
+.bottom_open:hover{
+    pointer-events: none;
 }
 
 .open_cell {
@@ -111,9 +168,14 @@ th:nth-child(1) {
 }
 
 .open_3dots {
+   position: relative;
    display: flex;
    flex-direction: row;
    gap: 10px;
+   width: 100px;
+   right: -40px;
+
+   float: right;
 }
 
 .open_row {
@@ -121,21 +183,28 @@ th:nth-child(1) {
    height: 32px;
    background: #eff2f3;
    border-radius: 5px;
-   & img {
+   & svg {
       justify-content: center;
-      margin: 12px 0 0 12px;
+      margin: 13px 0 0 12px;
    }
 }
 
 .close_row {
    rotate: (180deg);
-   & img {
+   & svg {
       margin-bottom: -5px;
    }
 }
 
 .three_dots {
-   margin-top: 20px;
+
+   width: 25px;
+   margin-left: -10px;
+   & svg {
+      margin-top: 20px;
+      margin-left: 10px;
+   }
+   
 }
 
 .delete_archive_container {
@@ -143,7 +212,7 @@ th:nth-child(1) {
    display: flex;
    flex-direction: column;
    top: 55px;
-   left: -44px;
+   left: -108px;
    width: 176px;
    height: 72px;
    background: #ffffff;
@@ -152,27 +221,42 @@ th:nth-child(1) {
 
    filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.25));
 
-   & p {
+   & .delete-icon, .archive-icon {
       display: flex;
       flex-direction: row;
+      height: 36px;
       margin: auto 10px;
+      align-items: center;
       cursor: pointer;
       font-size: 12px;
+      gap: 10px;
 
       color: #6e6b7b;
+      & svg {
+         margin-bottom: 20px;
+      }
    }
 
-   & img {
+   & .archive-icon{
+    margin: 0 10px;
+   }
+
+   & svg {
       cursor: pointer;
    }
 }
 
 .dop_cell {
-   width: 100%;
+   width: 1148px;
    height: 200px;
+
 }
 .dop-window {
    position: absolute;
+
+    background: #d11919;
+
+
 
    & p {
       font-weight: 500;
@@ -195,8 +279,8 @@ th:nth-child(1) {
 
    & .dop_client {
       position: absolute;
-      top: -180px;
-      left: 16px;
+      top: -200px;
+      left: 216px;
       width: 200px;
       & h2 {
          margin-top: -10px;
@@ -204,9 +288,9 @@ th:nth-child(1) {
    }
 
    & .dop_contact {
-      top: -180px;
+      top: -200px;
       position: absolute;
-      left: 372px;
+      left: 502px;
       width: 200px;
       & h2 {
          margin-top: -10px;
@@ -217,33 +301,65 @@ th:nth-child(1) {
       & h5 {
          margin-top: -10px;
       }
-      top: -100px;
+      top: -120px;
       position: absolute;
-      left: 16px;
+      left: 216px;
       width: 800px;
    }
 
    & .dop_total {
       position: absolute;
-      left: 870px;
-      top: -180px;
+      left: 970px;
+      top: -210px;
       width: 200px;
+      border-left: 0.5px solid #E3ECF6;
+      height: 80%;
+      padding-left: 30px;
+      margin: 25px 0;
+
+      & h4{
+         font-weight: 500;
+         font-size: 14px;
+         line-height: 21px;
+          margin-top: 10px;
+          color: #b9b9c3;
+      }
+
       & h1 {
          margin-top: -10px;
       }
       & h5 {
-         margin-top: 6px;
+         margin-top: 2px;
       }
       & .cost_number {
          display: flex;
          flex-direction: row;
+         font-weight: 700;
+         font-size: 25px;
+         line-height: 21px;
+         margin-top: 40px;
+         /* identical to box height, or 44% */
+
+         /* Client Portal/Dark */
+
+         color: #1d2c48;
       }
    }
    & .dop_status {
       position: absolute;
-      left: 150px;
-      top: 12px;
+      left: 260px;
+      top: 10px;
    }
+}
+
+.status__container {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   float: right;
+   width: 300px;
+   margin-right: 0;
 }
 
 .status_active,
@@ -302,21 +418,21 @@ th:nth-child(1) {
 }
 
 @media (max-width: 1400px) {
-   .dop-window .dop_total {
-      left: 670px;
+    .dop_total {
+      left: 870px;
    }
 
    .dop-window .dop_status {
-      left: 150px;
+      left:250px;
    }
 }
 
 @media (max-width: 1200px) {
    .dop-window .dop_total {
-      left: 570px;
+      left: calc(100vw - 220px)
    }
 
-   .dop-window .dop_status {
-      left: 100px;
-   }
+   // .dop-window .dop_status {
+   //    left: 200px;
+   // }
 }

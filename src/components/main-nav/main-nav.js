@@ -1,9 +1,12 @@
-import './main-nam.scss';
+import React from 'react';
+import './main-nav.scss';
 
-import classNames from 'classnames/bind';
+
 
 import { SearchIcon } from '../../images/searchicon';
 import { AddIcon } from '../../images/add';
+
+
 
 export const MainNav = ({
    search,
@@ -12,38 +15,34 @@ export const MainNav = ({
    handleOpenModal,
    clients
 }) => {
+
+  
    return (
-      <>
-         <div className='container_mainpage'>
-            <div className='main-nav'>
-               <div className='main-nav__search-container'>
-                  <span>
-                     <SearchIcon />
-                     {/* <img src={searchicon} alt='search' /> */}
-                  </span>
-                  <input
-                     placeholder='Search'
-                     type='text'
-                     onChange={(e) => setSearchValue(e.target.value)}
-                  />
-               </div>
-               <div
-                  className='main-nav__add-client-button'
-                  onClick={handleOpenModal}
-               >
-                  <span>
-                     {/* <img src={add} alt='add' /> */}
-                     <AddIcon />
-                  </span>
-                  <div>
-                     <p>New Client</p>
-                  </div>
-               </div>
+      <div className='container'>
+         <div className='main-nav'>
+            <div className='main-nav__search'>
+               <span>
+                  <SearchIcon />
+               </span>
+               <input
+                  placeholder='Search'
+                  type='text'
+                  onChange={(e) => setSearchValue(e.target.value)}
+               />
             </div>
-            <div className='main-nav__total_clients'>
-               Total Clients: {clients.length}
+            <div
+               className='main-nav__add-client-button'
+               onClick={handleOpenModal}
+            >
+               <span>
+                  <AddIcon />
+               </span>
+               <p>New Client</p>
             </div>
          </div>
-      </>
+         <div className='main-nav__total-clients'>
+            <p>Total Clients: {clients.length} </p>
+         </div>
+      </div>
    );
 };

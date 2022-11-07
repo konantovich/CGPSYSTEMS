@@ -7,13 +7,15 @@ import {
    addToArchive
 } from '../../redux/slices/clients';
 
-import arrow from './arrow.png';
-import threedots from './3dots.png';
-import deleteIcon from './delete.png';
-import archive from './archive.png';
+import { Archive } from '../../images/archive';
+import { Delete } from '../../images/delete';
+import { Arrow } from '../../images/arrow';
+
+import { ThreeDots } from '../../images/threedots';
 
 import './table-view.scss';
 
+//GENERATE COLUMNS and ROWS
 const ModalButtons = ({ children, row, open, status }) => {
    const dispatch = useDispatch();
 
@@ -27,28 +29,26 @@ const ModalButtons = ({ children, row, open, status }) => {
          <div className='open_3dots' id='modalwindow'>
             <div
                className={
-                  hoverModal || !openDeleteArchive
-                     ? 'modalmini'
-                     : 'modalmini active'
+                  openDeleteArchive === false ? 'modalmini' : 'modalmini active'
                }
                onClick={() => setOpenDeleteArchive(false)}
             ></div>
+
             <p
-               className={!openDetails ? 'open_row' : 'open_row close_row'}
+               className={!open ? 'open_row' : 'open_row close_row'}
                onClick={() => {
                   dispatch(openRow({ open: open, id: row }));
                   setOpenDetails(!openDetails);
                }}
             >
-               <img src={arrow} alt='' />
+               <Arrow />
             </p>
 
-            <p className='three_dots'>
-               <img
-                  src={threedots}
-                  alt=''
-                  onClick={() => setOpenDeleteArchive(!openDeleteArchive)}
-               />
+            <div
+               className='three_dots'
+               onClick={() => setOpenDeleteArchive(!openDeleteArchive)}
+            >
+               <ThreeDots />
 
                {openDeleteArchive && (
                   <div
@@ -56,20 +56,30 @@ const ModalButtons = ({ children, row, open, status }) => {
                      onMouseLeave={() => setHoverModal(false)}
                      className='delete_archive_container'
                   >
-                     <p onClick={() => dispatch(removeClient(row))}>
-                        <img src={deleteIcon} alt='' /> <p>Delete</p>
-                     </p>
-                     <p
-                        onClick={function () {
-                           dispatch(addToArchive({ status: status, id: row }));
-                           setOpenDeleteArchive(false);
+                     <div
+                        className='delete-icon'
+                        onClick={() => {
+                           dispatch(removeClient(row));
+                           setOpenDeleteArchive(!openDeleteArchive);
                         }}
                      >
-                        <img src={archive} alt='' /> <p>{status? 'Archive' : 'Active'}</p>
-                     </p>
+                        <Archive />
+
+                        <p> Delete</p>
+                     </div>
+                     <div
+                        className='archive-icon'
+                        onClick={function () {
+                           dispatch(addToArchive({ status: status, id: row }));
+                           setOpenDeleteArchive(!openDeleteArchive);
+                        }}
+                     >
+                        <Delete />
+                        <p>{status ? 'Archive' : 'Active'}</p>
+                     </div>
                   </div>
                )}
-            </p>
+            </div>
          </div>
       </>
    );
@@ -79,7 +89,14 @@ const generateData = (clients) => {
    let rows = [];
 
    if (clients.length < 1) {
-      return rows.push({ '': '' });
+      return rows.push({
+         Id: ``,
+         Client: ``,
+         Since: ``,
+         'Total Earnings': ``,
+         'Available Credit': ``,
+         Status: ``
+      });
    }
 
    for (let i = 0; i < clients.length; i++) {

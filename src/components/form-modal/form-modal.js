@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import './form.modal.scss';
+import './form-modal.scss';
 
 import { addClient } from '../../redux/slices/clients';
 
-import escape from './escape.png';
-import calendar from './calendar.png';
+import { Calendar } from '../../images/calendar';
+import { Escape } from '../../images/escape';
 
 export const FormModal = ({ modal, setModal }) => {
-   const [formValue, setFormValue] = React.useState({});
-
    const dispatch = useDispatch();
 
    const formRef = React.useRef();
@@ -37,39 +35,31 @@ export const FormModal = ({ modal, setModal }) => {
 
       dispatch(addClient(data));
 
-      setFormValue({
-         ...data
-      });
       setModal(!modal);
    };
 
    return (
-      <div>
-         {console.log(formValue)}
+      <>
          {modal && (
-            <div className='modal-container'>
-               <div className='form-container'>
+            <div className='form-modal__container'>
+               <div className='form-modal__wrapper'>
                   <form onSubmit={(e) => handleFormSubmit(e)} ref={formRef}>
-                     <div className='top_label_container'>
+                     <div className='form-modal__top-label'>
                         <h2>New Client</h2>
-                        <div>
-                           <img
-                              src={escape}
-                              alt='escape'
-                              onClick={() => setModal(!modal)}
-                           />
+                        <div onClick={() => setModal(!modal)}>
+                           <Escape />
                         </div>
                      </div>
 
-                     <div className='first_input'>
-                        <div className='input_label'>
+                     <div className='form-modal__first-input'>
+                        <div className='form-modal__input_label'>
                            <p>Client</p>
                         </div>
                         <input className='input' placeholder='Client name' />
                      </div>
 
-                     <div className='second_inputs'>
-                        <div className='input_label second_input'>
+                     <div className='form-modal__second_inputs'>
+                        <div className='form-modal__input_label second_input'>
                            <p>Total Earnings</p>
                            <input
                               className='input second_input'
@@ -77,7 +67,7 @@ export const FormModal = ({ modal, setModal }) => {
                            />
                         </div>
 
-                        <div className='input_label second_input'>
+                        <div className='form-modal__input_label second_input'>
                            <p>Available Credit</p>
                            <input
                               className='input second_input'
@@ -86,26 +76,25 @@ export const FormModal = ({ modal, setModal }) => {
                         </div>
                      </div>
 
-                     <div className='first_input'>
-                        <div className='input_label'>
+                     <div className='form-modal__first-input'>
+                        <div className='form-modal__input_label'>
                            <p>Notes</p>
                         </div>
                         <input className='input' />
                      </div>
 
-                     <div className='date_input '>
-                        <div className='input_label'>
+                     <div className='form-modal__date_input'>
+                        <div className='form-modal__input_label'>
                            <p>Client Since</p>
                         </div>
-                        <div className='date_icon'>
-                           <span>
-                              {' '}
-                              <img
+                        <div className='form-modal__date_icon'>
+                           <Calendar />
+
+                           {/* <img
                                  className=''
                                  src={calendar}
                                  alt='date-logo'
-                              />
-                           </span>
+                              /> */}
                         </div>
 
                         <input
@@ -117,15 +106,15 @@ export const FormModal = ({ modal, setModal }) => {
                         ></input>
                      </div>
 
-                     <div className='main_contact_container'>
-                        <div className='main_contact_label'>Main Contact</div>
+                     <div className='main_contact__container'>
+                        <div className='main_contact_label'><p>Main Contact</p></div>
                         <div className='second_inputs main_contact_inputs'>
-                           <div className='input_label second_input'>
+                           <div className='form-modal__input_label second_input'>
                               <p>First Name</p>
                               <input className='input second_input' />
                            </div>
 
-                           <div className='input_label second_input'>
+                           <div className='form-modal__input_label second_input'>
                               <p>Last Name</p>
                               <input className='input second_input' />
                            </div>
@@ -144,6 +133,6 @@ export const FormModal = ({ modal, setModal }) => {
                </div>
             </div>
          )}
-      </div>
+      </>
    );
 };

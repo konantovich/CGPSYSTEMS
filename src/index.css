@@ -2,7 +2,8 @@
 
 body {
   box-sizing: border-box;
-   margin: 0;
    font-family: 'Roboto', sans-serif;
    background: #e5e5e5;
+   /* overflow: hidden; */
+ 
 }

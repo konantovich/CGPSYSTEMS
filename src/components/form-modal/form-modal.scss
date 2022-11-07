@@ -1,27 +1,29 @@
-.modal-container {
+.form-modal__container {
    top: 0;
+   left: 0;
+   min-height: 730px;
    position: absolute;
    width: 100%;
-   height: 100vh;
+   height: 100%;
    background-color: rgba(0, 0, 0, 0.5);
-
+   overflow: hidden;
    z-index: 3333;
 }
 
-.form-container {
+.form-modal__wrapper {
    display: flex;
    flex-direction: column;
-
+   overflow: hidden;
    width: 539px;
-   max-height: 565px;
+   max-height: 665px;
    background: #ffffff;
-   margin: 80px auto;
+   margin: 40px auto;
    align-items: center;
    justify-content: center;
    padding: 11px;
 }
 
-.top_label_container {
+.form-modal__top-label {
    width: 100%;
    display: flex;
    flex-direction: row;
@@ -30,7 +32,7 @@
 
    color: #455a64;
 
-   & img {
+   & svg {
       width: 14px;
       cursor: pointer;
    }
@@ -48,24 +50,25 @@
    border-radius: 4px;
    height: 36px;
    outline: none;
+      margin-top: 8px;
 }
 form {
    width: 100%;
 }
-.first_input {
+.form-modal__first-input {
    background: #ffffff;
    //    width: 90%;
    display: block;
    margin: auto;
    & input {
-      width: 100%;
+      width: 99%;
       //   margin: 0 -21px 0 0;
    }
    & input::-webkit-input-placeholder {
       padding-left: 10px;
    }
 }
-.input_label {
+.form-modal__input_label {
    font-weight: 500;
    font-size: 12px;
    line-height: 14px;
@@ -73,7 +76,12 @@ form {
    background: #ffffff;
    margin: 14px 0 0 0;
    & p {
-      margin: 0 0 5px 0;
+      margin: 0  0px 0;
+   }
+   & input{
+      width:50%;
+      // margin-top: 8px;
+
    }
 }
 
@@ -105,36 +113,30 @@ form {
    display: flex;
    flex-direction: row;
 
-   & span {
-      bottom: 10px;
-      left: 12px;
-      width: 36px;
-
-      margin: 0;
-   }
+   //
    & input {
       border: 1px solid #d6d8de;
       border-radius: 4px 0px 0px 4px;
    }
 }
 
-.date_icon_input {
+.form-modal__date_icon_input {
    display: flex;
    flex-direction: row;
    width: 40px;
 }
-.date_input {
+.form-modal__date_input {
    position: relative;
    display: flex;
    flex-direction: column;
    & input {
-      width: 41%;
+      width: calc(50% - 49px);
    }
    & input::-webkit-input-placeholder {
       padding-left: 10px;
    }
 
-   & .input_label {
+   & .form-modal__input_label {
       & p {
          font-weight: 500;
          font-size: 12px;
@@ -146,22 +148,22 @@ form {
       padding-left: 45px;
    }
 }
-.date_icon {
+.form-modal__date_icon {
    position: absolute;
-   top: 33px;
-   left: 0px;
+   top: 36px;
+   left: 1px;
    width: 40px;
    height: 40px;
 
    border-right: 1px solid #d6d8de;
    border-radius: 0;
-   & img {
-      margin-left: 12px;
+   & svg {
+      margin-left: 13px;
       margin-top: 10px;
    }
 }
 
-.main_contact_container {
+.main_contact__container {
    width: 100%;
    border: 1px solid #efefef;
    border-radius: 8px;
@@ -177,6 +179,7 @@ form {
       margin: 17px 17px;
       gap: 14px;
       & input {
+         margin-top: 8px;
          width: 100%;
       }
    }

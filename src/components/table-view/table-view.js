@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import generateData from './generate-data';
+
 import { fetchClients, closeAllRow } from '../../redux/slices/clients';
 
 import './table-view.scss';
 
-import sixdots from './6dots.png';
+import { ArrowCol } from '../../images/arrow-col';
 
 export const TableView = ({ searchValue }) => {
    const dispatch = useDispatch();
@@ -14,10 +15,14 @@ export const TableView = ({ searchValue }) => {
    const clients = useSelector((state) => state.clients.clients.items);
    const [clientsLoaded, setClientsLoaded] = useState(false);
 
+   //First load fetch data
    React.useEffect(() => {
       dispatch(fetchClients());
+      setCols(generateData(filteredData).columns);
+      setRows(generateData(filteredData).data);
    }, []);
 
+   //Search Filter
    const filteredData = clients.filter((el) => {
       if (searchValue === '') {
          return el;
@@ -26,53 +31,46 @@ export const TableView = ({ searchValue }) => {
       }
    });
 
+   //Find Client By Id
    const findClient = (id) => {
       return clients.find((o) => o.id === id);
    };
+
    React.useEffect(() => {
       if (clients) {
-         setClientsLoaded(true);
-      }
-      if (clientsLoaded) {
-         setCols(generateData(filteredData).columns);
+         if (!cols) setCols(generateData(filteredData).columns);
+
          setRows(generateData(filteredData).data);
       }
    }, [clients, clientsLoaded, searchValue]);
 
-   //DRAG
-   const [cols, setCols] = useState();
-   const [rows, setRows] = useState();
-   const [dragOver, setDragOver] = useState('');
-
+   
+   //DRAG COLS
+   const [cols, setCols] = useState(generateData(filteredData).columns);
+   const [rows, setRows] = useState(generateData(filteredData).data);
    const handleDragStart = (e) => {
       const { id } = e.target;
       const idx = cols.indexOf(id);
       e.dataTransfer.setData('colIdx', idx);
    };
-
-   const handleDragOver = (e) => e.preventDefault();
-   const handleDragEnter = (e) => {
-      const { id } = e.target;
-      setDragOver(id);
-   };
-
+   const handledragover = (e) => e.preventDefault();
    const handleOnDrop = (e) => {
       const { id } = e.target;
+
       const droppedColIdx = cols.indexOf(id);
       const draggedColIdx = e.dataTransfer.getData('colIdx');
       const tempCols = [...cols];
 
+      if (+draggedColIdx === 6 || id === '') {
+         return;
+      }
       tempCols[draggedColIdx] = cols[droppedColIdx];
       tempCols[droppedColIdx] = cols[draggedColIdx];
       setCols(tempCols);
-      setDragOver('');
-
-      dispatch(closeAllRow());
    };
 
    return (
-    <div className='container_mainpage'>
-      <div className='App'>
+      <div className='container'>
          <table>
             <thead>
                <tr>
@@ -83,18 +81,12 @@ export const TableView = ({ searchValue }) => {
                            key={col}
                            draggable
                            onDragStart={handleDragStart}
-                           onDragOver={handleDragOver}
+                           onDragOver={handledragover}
                            onDrop={handleOnDrop}
-                           onDragEnter={handleDragEnter}
-                           dragOver={col === dragOver}
                            className='clienthover'
                         >
                            {col}
-                           <p>
-                              {
-                                 // <img src={sixdots} alt='' />
-                              }
-                           </p>
+                           <ArrowCol />
                         </th>
                      ))}
                </tr>
@@ -102,23 +94,21 @@ export const TableView = ({ searchValue }) => {
             <tbody>
                {rows &&
                   rows.map((row, index) => (
-                     <>
-                        <tr key={row.Id} className='rows'>
+                     <React.Fragment key={index}>
+                        <tr className='rows'>
                            {Object.entries(row).map(([k, v], idx) => (
-                              <>
-                                 <td key={v} dragOver={cols[idx] === dragOver}>
-                                    {row[cols[idx]]}
-                                 </td>
-                              </>
+                              <td key={idx}>{row[cols[idx]]}</td>
                            ))}
                         </tr>
 
-                        <div className='bottom_open'>
+                        <tr className='bottom_open'>
                            {findClient(row.Id) &&
                               findClient(row.Id).open === true && (
                                  <>
-                                    <div className='dop_cell'></div>
-                                    <div className='dop-window'>
+                                    <td>
+                                       <div className='dop_cell'></div>
+                                    </td>
+                                    <td className='dop-window'>
                                        <div className='dop_client'>
                                           <p>Client</p>
                                           <h2>{row.Client}</h2>
@@ -141,7 +131,7 @@ export const TableView = ({ searchValue }) => {
                                        </div>
 
                                        <div className='dop_total'>
-                                          <p>Total Earnings</p>
+                                          <h4>Total Earnings</h4>
                                           <div className='cost_number'>
                                              <h1>
                                                 $
@@ -165,15 +155,14 @@ export const TableView = ({ searchValue }) => {
                                              )}
                                           </div>
                                        </div>
-                                    </div>
+                                    </td>
                                  </>
                               )}
-                        </div>
-                     </>
+                        </tr>
+                     </React.Fragment>
                   ))}
             </tbody>
          </table>
-      </div>
       </div>
    );
 };

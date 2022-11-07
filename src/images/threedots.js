@@ -1,0 +1,33 @@
+export const ThreeDots = () => {
+   return (
+      <svg
+         width='4'
+         height='18'
+         viewBox='0 0 4 18'
+         fill='none'
+         xmlns='http://www.w3.org/2000/svg'
+      >
+         <circle
+            cx='2'
+            cy='16'
+            r='2'
+            transform='rotate(-90 2 16)'
+            fill='#455A64'
+         />
+         <circle
+            cx='2'
+            cy='9'
+            r='2'
+            transform='rotate(-90 2 9)'
+            fill='#455A64'
+         />
+         <circle
+            cx='2'
+            cy='2'
+            r='2'
+            transform='rotate(-90 2 2)'
+            fill='#455A64'
+         />
+      </svg>
+   );
+};
