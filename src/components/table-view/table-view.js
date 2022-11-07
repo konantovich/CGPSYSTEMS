@@ -44,7 +44,7 @@ export const TableView = ({ searchValue }) => {
       }
    }, [clients, clientsLoaded, searchValue]);
 
-   
+
    //DRAG COLS
    const [cols, setCols] = useState(generateData(filteredData).columns);
    const [rows, setRows] = useState(generateData(filteredData).data);
@@ -137,7 +137,8 @@ export const TableView = ({ searchValue }) => {
                                                 $
                                                 {
                                                    findClient(row.Id)
-                                                      .totalEarnings
+                                                   .totalEarnings ?   findClient(row.Id)
+                                                   .totalEarnings : 0
                                                 }
                                              </h1>
                                              <h5>.00</h5>
